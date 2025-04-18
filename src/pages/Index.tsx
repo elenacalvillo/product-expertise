@@ -1,9 +1,12 @@
 
 import React from "react";
 import QuizContainer from "@/components/QuizContainer";
+import StartQuiz from "@/components/StartQuiz";
+import { QuizProvider, useQuiz } from "@/contexts/QuizContext";
 import { useToast } from "@/hooks/use-toast";
 
-const Index = () => {
+const QuizContent = () => {
+  const { isStarted } = useQuiz();
   const { toast } = useToast();
 
   return (
@@ -18,13 +21,21 @@ const Index = () => {
           </p>
         </header>
 
-        <QuizContainer />
+        {isStarted ? <QuizContainer /> : <StartQuiz />}
 
         <footer className="mt-16 text-center text-gray-500 text-sm">
           <p>© 2025 Product Pro Quiz Master. All rights reserved.</p>
         </footer>
       </div>
     </div>
+  );
+};
+
+const Index = () => {
+  return (
+    <QuizProvider>
+      <QuizContent />
+    </QuizProvider>
   );
 };
 
