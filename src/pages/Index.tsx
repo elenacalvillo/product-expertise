@@ -1,11 +1,28 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from "react";
+import QuizContainer from "@/components/QuizContainer";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
+  const { toast } = useToast();
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-gradient-to-b from-quiz-mint-100 to-quiz-mint-300">
+      <div className="container mx-auto py-8 px-4">
+        <header className="text-center mb-10">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-quiz-teal-dark to-quiz-teal">
+            Product Management Expertise Quiz
+          </h1>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Discover your product management level through this 13-question assessment designed to evaluate your expertise and provide tailored resources.
+          </p>
+        </header>
+
+        <QuizContainer />
+
+        <footer className="mt-16 text-center text-gray-500 text-sm">
+          <p>© 2025 Product Pro Quiz Master. All rights reserved.</p>
+        </footer>
       </div>
     </div>
   );
