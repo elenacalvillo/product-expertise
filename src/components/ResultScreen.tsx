@@ -1,10 +1,11 @@
-
 import React from "react";
 import { QuizOption, CareerResult } from "@/utils/quizData";
 import SubscriptionForm from "./SubscriptionForm";
 import { Button } from "@/components/ui/button";
 import { RefreshCw, Share2 } from "lucide-react";
 import { toast } from "sonner";
+import ProductSkillsRadar from './ProductSkillsRadar';
+import { calculateSkillScores } from '@/utils/quizLogic';
 
 interface ResultScreenProps {
   score: number;
@@ -13,6 +14,7 @@ interface ResultScreenProps {
   maxStreak: number;
   careerResult: CareerResult;
   onRestartQuiz: () => void;
+  selectedAnswers: Record<number, QuizOption | null>;
 }
 
 const ResultScreen: React.FC<ResultScreenProps> = ({
@@ -22,6 +24,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({
   maxStreak,
   careerResult,
   onRestartQuiz,
+  selectedAnswers
 }) => {
   const handleShare = () => {
     if (navigator.share) {
@@ -50,6 +53,8 @@ const ResultScreen: React.FC<ResultScreenProps> = ({
   };
   
   const visual = careerLevelVisuals[careerResult.level] || { icon: "🎯", color: "bg-gray-100" };
+
+  const skillScores = calculateSkillScores(selectedAnswers);
 
   return (
     <div className="max-w-2xl mx-auto p-4">
@@ -126,6 +131,14 @@ const ResultScreen: React.FC<ResultScreenProps> = ({
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="border-t border-gray-100 pt-6 mt-6">
+        <h3 className="text-lg font-semibold mb-4">Product Skills Radar</h3>
+        <p className="text-sm text-gray-600 mb-4">
+          This radar chart shows your proficiency in different product management skills based on your answers.
+        </p>
+        <ProductSkillsRadar skillScores={skillScores} />
       </div>
       
       <SubscriptionForm careerResult={careerResult} />

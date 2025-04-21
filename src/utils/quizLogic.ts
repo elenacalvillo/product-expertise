@@ -1,4 +1,3 @@
-
 import { CareerResult, QuizOption, quizQuestions, careerResults } from './quizData';
 
 export const calculateScore = (selectedAnswers: Record<number, QuizOption | null>): number => {
@@ -81,4 +80,41 @@ export const createConfetti = () => {
   setTimeout(() => {
     document.body.removeChild(confettiContainer);
   }, 5000);
+};
+
+export const calculateSkillScores = (selectedAnswers: Record<number, QuizOption | null>): Record<ProductSkill, number> => {
+  const skillScores: Record<ProductSkill, number> = {
+    'Execution': 0,
+    'Product': 0,
+    'Strategic': 0,
+    'Leadership': 0,
+    'People Management': 0
+  };
+  
+  const skillQuestionCounts: Record<ProductSkill, number> = {
+    'Execution': 0,
+    'Product': 0,
+    'Strategic': 0,
+    'Leadership': 0,
+    'People Management': 0
+  };
+  
+  quizQuestions.forEach(question => {
+    const selectedOption = selectedAnswers[question.id];
+    skillQuestionCounts[question.skill]++;
+    
+    if (selectedOption && selectedOption.id === question.correctOption) {
+      skillScores[question.skill]++;
+    }
+  });
+  
+  // Convert to percentages
+  Object.keys(skillScores).forEach(skill => {
+    const skillKey = skill as ProductSkill;
+    if (skillQuestionCounts[skillKey] > 0) {
+      skillScores[skillKey] = (skillScores[skillKey] / skillQuestionCounts[skillKey]) * 100;
+    }
+  });
+  
+  return skillScores;
 };

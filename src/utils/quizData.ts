@@ -1,5 +1,6 @@
-
 export type CareerLevel = 'Associate' | 'PM' | 'Senior' | 'Head' | 'VP';
+
+export type ProductSkill = 'Execution' | 'Product' | 'Strategic' | 'Leadership' | 'People Management';
 
 export interface QuizOption {
   id: string;
@@ -14,6 +15,7 @@ export interface QuizQuestion {
   options: QuizOption[];
   correctOption: string;
   explanation: string;
+  skill: ProductSkill;
 }
 
 export interface CareerResult {
@@ -37,7 +39,8 @@ export const quizQuestions: QuizQuestion[] = [
       { id: "D", text: "Long-term market shifts", careerLevel: "Senior", points: 3 },
     ],
     correctOption: "A",
-    explanation: "Associates analyze customer data, driving execution roles."
+    explanation: "Associates analyze customer data, driving execution roles.",
+    skill: "Product"
   },
   {
     id: 2,
@@ -49,7 +52,8 @@ export const quizQuestions: QuizQuestion[] = [
       { id: "D", text: "Share strategic rationale", careerLevel: "Senior", points: 3 },
     ],
     correctOption: "D",
-    explanation: "Leaders articulate vision alignment."
+    explanation: "Leaders articulate vision alignment.",
+    skill: "Leadership"
   },
   {
     id: 3,
@@ -61,7 +65,8 @@ export const quizQuestions: QuizQuestion[] = [
       { id: "D", text: "Align with company OKRs", careerLevel: "Head", points: 4 },
     ],
     correctOption: "D",
-    explanation: "Execs prioritize org-wide goals."
+    explanation: "Execs prioritize org-wide goals.",
+    skill: "People Management"
   },
   {
     id: 4,
@@ -73,7 +78,8 @@ export const quizQuestions: QuizQuestion[] = [
       { id: "D", text: "Cross-team coordination", careerLevel: "Head", points: 4 },
     ],
     correctOption: "B",
-    explanation: "Senior PMs balance customer/business needs."
+    explanation: "Senior PMs balance customer/business needs.",
+    skill: "Product"
   },
   {
     id: 5,
@@ -85,7 +91,8 @@ export const quizQuestions: QuizQuestion[] = [
       { id: "D", text: "Align with 5-year vision", careerLevel: "VP", points: 5 },
     ],
     correctOption: "D",
-    explanation: "VPs evaluate long-term strategy."
+    explanation: "VPs evaluate long-term strategy.",
+    skill: "Strategic"
   },
   {
     id: 6,
@@ -97,7 +104,8 @@ export const quizQuestions: QuizQuestion[] = [
       { id: "D", text: "Market viability", careerLevel: "VP", points: 5 },
     ],
     correctOption: "B",
-    explanation: "Senior PMs plan for future scaling."
+    explanation: "Senior PMs plan for future scaling.",
+    skill: "Execution"
   },
   {
     id: 7,
@@ -109,7 +117,8 @@ export const quizQuestions: QuizQuestion[] = [
       { id: "D", text: "Find middle ground", careerLevel: "Head", points: 4 },
     ],
     correctOption: "C",
-    explanation: "Seniors use data to resolve conflicts."
+    explanation: "Seniors use data to resolve conflicts.",
+    skill: "People Management"
   },
   {
     id: 8,
@@ -121,7 +130,8 @@ export const quizQuestions: QuizQuestion[] = [
       { id: "D", text: "Market share", careerLevel: "VP", points: 5 },
     ],
     correctOption: "D",
-    explanation: "VPs track macro-level impact."
+    explanation: "VPs track macro-level impact.",
+    skill: "Strategic"
   },
   {
     id: 9,
@@ -133,7 +143,8 @@ export const quizQuestions: QuizQuestion[] = [
       { id: "D", text: "Partner with leaders", careerLevel: "Head", points: 4 },
     ],
     correctOption: "C",
-    explanation: "Seniors validate in controlled environments."
+    explanation: "Seniors validate in controlled environments.",
+    skill: "Strategic"
   },
   {
     id: 10,
@@ -145,7 +156,8 @@ export const quizQuestions: QuizQuestion[] = [
       { id: "D", text: "Assess portfolio impact", careerLevel: "VP", points: 5 },
     ],
     correctOption: "B",
-    explanation: "Seniors make strategic trade-offs."
+    explanation: "Seniors make strategic trade-offs.",
+    skill: "Execution"
   },
   {
     id: 11,
@@ -157,7 +169,8 @@ export const quizQuestions: QuizQuestion[] = [
       { id: "D", text: "Create advisory board", careerLevel: "Head", points: 4 },
     ],
     correctOption: "D",
-    explanation: "Heads build systemic feedback channels."
+    explanation: "Heads build systemic feedback channels.",
+    skill: "Product"
   },
   {
     id: 12,
@@ -169,7 +182,8 @@ export const quizQuestions: QuizQuestion[] = [
       { id: "D", text: "Global infrastructure", careerLevel: "VP", points: 5 },
     ],
     correctOption: "D",
-    explanation: "VPs plan infrastructure for hypergrowth."
+    explanation: "VPs plan infrastructure for hypergrowth.",
+    skill: "Strategic"
   },
   {
     id: 13,
@@ -181,8 +195,9 @@ export const quizQuestions: QuizQuestion[] = [
       { id: "D", text: "Align with company values", careerLevel: "VP", points: 5 },
     ],
     correctOption: "D",
-    explanation: "VPs uphold organizational principles."
-  },
+    explanation: "VPs uphold organizational principles.",
+    skill: "Leadership"
+  }
 ];
 
 export const careerResults: CareerResult[] = [
