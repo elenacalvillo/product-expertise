@@ -15,7 +15,8 @@ import { QuizOption } from "@/utils/quizData";
 const QuizContainer: React.FC = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<Record<number, QuizOption | null>>({});
-  const [score, setScore] = useState(0);
+  const [displayScore, setDisplayScore] = useState(0);
+  const [actualScore, setActualScore] = useState(0);
   const [streak, setStreak] = useState(0);
   const [maxStreak, setMaxStreak] = useState(0);
   const [showResults, setShowResults] = useState(false);
@@ -32,16 +33,21 @@ const QuizContainer: React.FC = () => {
     
     setSelectedAnswers(updatedAnswers);
     
-    // Update score
-    const newScore = calculateScore(updatedAnswers);
-    setScore(newScore);
+    // Calculate the actual score (used for final result)
+    const newActualScore = calculateScore(updatedAnswers);
+    setActualScore(newActualScore);
     
-    // Update streak
+    // Update displayed score only for correct answers
     if (option.id === currentQuestion.correctOption) {
+      const newDisplayScore = displayScore + option.points;
+      setDisplayScore(newDisplayScore);
+      
+      // Update streak
       const newStreak = streak + 1;
       setStreak(newStreak);
       setMaxStreak(Math.max(maxStreak, newStreak));
     } else {
+      // Reset streak if answer is incorrect
       setStreak(0);
     }
   };
@@ -57,7 +63,8 @@ const QuizContainer: React.FC = () => {
   const handleRestartQuiz = () => {
     setCurrentQuestionIndex(0);
     setSelectedAnswers({});
-    setScore(0);
+    setDisplayScore(0);
+    setActualScore(0);
     setStreak(0);
     setMaxStreak(0);
     setShowResults(false);
@@ -65,11 +72,11 @@ const QuizContainer: React.FC = () => {
   
   if (showResults) {
     const correctAnswers = getCorrectAnswersCount(selectedAnswers);
-    const careerResult = getCareerResult(score);
+    const careerResult = getCareerResult(actualScore);
     
     return (
       <ResultScreen 
-        score={score}
+        score={actualScore}
         totalQuestions={totalQuestions}
         correctAnswers={correctAnswers}
         maxStreak={maxStreak}
@@ -84,7 +91,7 @@ const QuizContainer: React.FC = () => {
       <ProgressHeader 
         currentQuestion={currentQuestionIndex + 1}
         totalQuestions={totalQuestions}
-        score={score}
+        score={displayScore}
         maxPossibleScore={maxPossibleScore}
         streak={streak}
         selectedAnswers={selectedAnswers}
