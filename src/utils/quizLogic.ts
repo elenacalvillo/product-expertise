@@ -4,12 +4,9 @@ import { CareerResult, QuizOption, quizQuestions, careerResults } from './quizDa
 export const calculateScore = (selectedAnswers: Record<number, QuizOption | null>): number => {
   let totalScore = 0;
   
-  Object.entries(selectedAnswers).forEach(([questionId, option]) => {
+  Object.values(selectedAnswers).forEach(option => {
     if (option) {
-      const question = quizQuestions.find(q => q.id === parseInt(questionId, 10));
-      if (question && option.id === question.correctOption) {
-        totalScore += option.points;
-      }
+      totalScore += option.points;
     }
   });
   
