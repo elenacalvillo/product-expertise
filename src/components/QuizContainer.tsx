@@ -82,6 +82,7 @@ const QuizContainer: React.FC = () => {
         maxStreak={maxStreak}
         careerResult={careerResult}
         onRestartQuiz={handleRestartQuiz}
+        selectedAnswers={selectedAnswers}
       />
     );
   }

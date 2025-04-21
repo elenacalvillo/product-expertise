@@ -1,4 +1,5 @@
-import { CareerResult, QuizOption, quizQuestions, careerResults } from './quizData';
+
+import { CareerResult, QuizOption, quizQuestions, careerResults, ProductSkill } from './quizData';
 
 export const calculateScore = (selectedAnswers: Record<number, QuizOption | null>): number => {
   let totalScore = 0;
@@ -101,10 +102,13 @@ export const calculateSkillScores = (selectedAnswers: Record<number, QuizOption 
   
   quizQuestions.forEach(question => {
     const selectedOption = selectedAnswers[question.id];
-    skillQuestionCounts[question.skill]++;
     
-    if (selectedOption && selectedOption.id === question.correctOption) {
-      skillScores[question.skill]++;
+    if (question.skill) {
+      skillQuestionCounts[question.skill]++;
+      
+      if (selectedOption && selectedOption.id === question.correctOption) {
+        skillScores[question.skill]++;
+      }
     }
   });
   
