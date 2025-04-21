@@ -130,16 +130,19 @@ const ResultScreen: React.FC<ResultScreenProps> = ({
               })}
             </div>
           </div>
+
+          <div className="border-t border-gray-100 pt-6 mt-6">
+            <h3 className="text-lg font-semibold mb-4">Product Skills Radar</h3>
+            <p className="text-sm text-gray-600 mb-4">
+              This radar chart shows your proficiency in different product management skills based on your answers.
+            </p>
+            <ProductSkillsRadar skillScores={skillScores} />
+          </div>
+          
         </div>
       </div>
 
-      <div className="border-t border-gray-100 pt-6 mt-6">
-        <h3 className="text-lg font-semibold mb-4">Product Skills Radar</h3>
-        <p className="text-sm text-gray-600 mb-4">
-          This radar chart shows your proficiency in different product management skills based on your answers.
-        </p>
-        <ProductSkillsRadar skillScores={skillScores} />
-      </div>
+      
       
       <SubscriptionForm careerResult={careerResult} />
     </div>
