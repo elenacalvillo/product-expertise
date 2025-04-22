@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -69,7 +68,7 @@ const StartQuiz: React.FC = () => {
       <CardFooter>
         <Button 
           onClick={handleStartQuiz} 
-          className="w-full text-lg py-6 bg-gradient-to-r from-quiz-teal to-quiz-teal-dark hover:from-quiz-teal-dark hover:to-quiz-teal text-white"
+          className="w-full text-lg py-6 bg-quiz-teal text-white hover:bg-quiz-teal-dark"
         >
           Start Quiz
         </Button>
