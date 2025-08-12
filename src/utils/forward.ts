@@ -1,4 +1,4 @@
-import { ZAPIER_WEBHOOK_URL, FORWARD_TO_EMAIL } from "@/config";
+import { FORWARD_WEBHOOK_URL, FORWARD_TO_EMAIL } from "@/config";
 
 export type ForwardPayload = {
   name: string;
@@ -12,7 +12,7 @@ export type ForwardPayload = {
 export async function forwardSubmission(
   payload: ForwardPayload
 ): Promise<"webhook" | "mailto"> {
-  const webhook = ZAPIER_WEBHOOK_URL?.trim();
+  const webhook = FORWARD_WEBHOOK_URL?.trim();
 
   if (webhook) {
     try {
@@ -24,7 +24,7 @@ export async function forwardSubmission(
       });
       return "webhook";
     } catch (e) {
-      console.error("Zapier webhook failed, falling back to mailto:", e);
+      console.error("Webhook failed, falling back to mailto:", e);
       // fall through to mailto
     }
   }
