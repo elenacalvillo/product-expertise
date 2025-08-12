@@ -144,7 +144,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({
 
       
       
-      <SubscriptionForm careerResult={careerResult} />
+      <SubscriptionForm careerResult={careerResult} skillScores={skillScores} />
     </div>
   );
 };

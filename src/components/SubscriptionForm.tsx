@@ -5,27 +5,41 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { CareerResult } from "@/utils/quizData";
 import { toast } from "sonner";
+import { forwardSubmission } from "@/utils/forward";
 
 interface SubscriptionFormProps {
   careerResult: CareerResult;
+  skillScores: Record<string, number>;
 }
 
-const SubscriptionForm: React.FC<SubscriptionFormProps> = ({ careerResult }) => {
+const SubscriptionForm: React.FC<SubscriptionFormProps> = ({ careerResult, skillScores }) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    try {
+      await forwardSubmission({
+        name,
+        email,
+        careerResult,
+        skillScores,
+        timestamp: new Date().toISOString(),
+        source: window.location.origin,
+      });
+
       setIsSubmitted(true);
       toast.success("Thank you for subscribing! Check your email for your free resources.");
-    }, 1500);
+    } catch (error) {
+      console.error("Error forwarding submission:", error);
+      toast.error("Failed to send your submission. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
