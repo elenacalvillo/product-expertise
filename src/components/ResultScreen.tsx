@@ -109,25 +109,27 @@ const ResultScreen: React.FC<ResultScreenProps> = ({
           
           <div className="border-t border-gray-100 pt-6">
             <h3 className="text-lg font-semibold mb-4">PM Career Ladder</h3>
-            <div className="flex items-center mb-6 relative">
-              <div className="absolute top-1/2 left-0 right-0 h-2 bg-gray-200 transform -translate-y-1/2 z-0"></div>
-              {["Associate PM", "Product Manager", "Senior PM", "Head of Product", "VP of Product"].map((level, index) => {
-                const isCurrentLevel = careerResult.level === level;
-                return (
-                  <div key={level} className="flex flex-col items-center relative z-10 flex-1">
-                    <div 
-                      className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                        isCurrentLevel ? "bg-quiz-teal" : "bg-gray-200"
-                      } ${isCurrentLevel ? "text-white" : "text-gray-500"}`}
-                    >
-                      {index + 1}
+            <div className="relative mb-6">
+              <div className="absolute left-0 right-0 top-4 h-1.5 bg-gray-200 rounded-full z-0"></div>
+              <div className="grid grid-cols-5 gap-2 relative z-10">
+                {["Associate PM", "Product Manager", "Senior PM", "Head of Product", "VP of Product"].map((level, index) => {
+                  const isCurrentLevel = careerResult.level === level;
+                  return (
+                    <div key={level} className="flex flex-col items-center gap-2">
+                      <div 
+                        className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                          isCurrentLevel ? "bg-quiz-teal" : "bg-gray-200"
+                        } ${isCurrentLevel ? "text-white" : "text-gray-500"}`}
+                      >
+                        {index + 1}
+                      </div>
+                      <div className={`text-xs text-center ${isCurrentLevel ? "font-bold" : "font-normal"}`}>
+                        {level.split(" ")[0]}
+                      </div>
                     </div>
-                    <div className={`mt-2 text-xs text-center ${isCurrentLevel ? "font-bold" : "font-normal"}`}>
-                      {level.split(" ")[0]}
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
 
