@@ -14,7 +14,7 @@ const QuizContent = () => {
       <div className="container mx-auto py-8 px-4">
         <header className="text-center mb-10">
           <h1 className="text-3xl md:text-4xl font-bold mb-4 text-quiz-teal-dark">
-            Product Management Expertise Quiz
+            Product Management Expertise
           </h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Discover your product management level through this 13-question assessment designed to evaluate your expertise and provide tailored resources.
