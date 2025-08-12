@@ -4,6 +4,7 @@ import QuizContainer from "@/components/QuizContainer";
 import StartQuiz from "@/components/StartQuiz";
 import { QuizProvider, useQuiz } from "@/contexts/QuizContext";
 import { useToast } from "@/hooks/use-toast";
+import NewsletterBanner from "@/components/NewsletterBanner";
 
 const QuizContent = () => {
   const { isStarted } = useQuiz();
@@ -22,6 +23,8 @@ const QuizContent = () => {
         </header>
 
         {isStarted ? <QuizContainer /> : <StartQuiz />}
+
+        <NewsletterBanner />
 
         <footer className="mt-16 text-center text-gray-500 text-sm">
           <p>© 2025 Product Pro Quiz Master. All rights reserved.</p>

@@ -6,6 +6,7 @@ import { RefreshCw, Share2 } from "lucide-react";
 import { toast } from "sonner";
 import ProductSkillsRadar from './ProductSkillsRadar';
 import { calculateSkillScores } from '@/utils/quizLogic';
+import { SHOW_RESULT_SUBSCRIPTION_FORM } from "@/config";
 
 interface ResultScreenProps {
   score: number;
@@ -144,9 +145,9 @@ const ResultScreen: React.FC<ResultScreenProps> = ({
         </div>
       </div>
 
-      
-      
-      <SubscriptionForm careerResult={careerResult} skillScores={skillScores} />
+      {SHOW_RESULT_SUBSCRIPTION_FORM && (
+        <SubscriptionForm careerResult={careerResult} skillScores={skillScores} />
+      )}
     </div>
   );
 };
