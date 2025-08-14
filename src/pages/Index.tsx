@@ -27,7 +27,7 @@ const QuizContent = () => {
         <NewsletterBanner />
 
         <footer className="mt-16 text-center text-gray-500 text-sm">
-          <p>Made with ♥ by <a href="https://elenacalvillo.com/" target="_blank">Elena Calvillo</a></p>
+          <p>Made with ♥ by <a href="https://elenacalvillo.com/" target="_blank"><u>Elena Calvillo</u></a></p>
         </footer>
       </div>
     </div>
